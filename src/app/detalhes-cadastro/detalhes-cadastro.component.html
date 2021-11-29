@@ -1,0 +1,48 @@
+<nav class="menu">
+    <a routerLink="alunos">
+        <img src="assets/img/logo.png" alt="" class="logo1">
+        <img src="assets/img/logo2.png" alt="" class="logo1-1">
+        </a>
+    
+    <ul>
+        
+        <li><a routerLink="/lista">Alunos</a></li>
+       
+        
+        <li><a routerLink="/cadastro" routerLinkActive="active">Cadastrar</a></li>
+        
+  
+    </ul>
+  </nav> 
+  <body>
+    
+
+
+
+    <div class="container" data-aos="zoom-in" >
+        <h3> Perfil do Aluno</h3>
+        <hr>
+        <div>
+            <label> <b> Nome: </b></label> {{aluno.nome}}
+        </div>
+
+        <div>
+            <label> <b> Cpf: </b></label> {{aluno.cpf}}
+        </div>
+
+        <div>
+            <label> <b> Idade: </b></label> {{aluno.idade}}
+        </div>
+        <div>
+            <label> <b> Sexo: </b></label> {{aluno.sexo}}
+        </div>
+        <div>
+            <label> <b> Telefone: </b></label> {{aluno.telefone}}
+        </div>
+        <div>
+            <label> <b> Email: </b></label> {{aluno.email}}
+        </div>
+        <button routerLink="/lista" class="btn bg-primary"> Voltar </button>
+        
+    </div>
+    </body>
