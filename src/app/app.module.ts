@@ -9,7 +9,6 @@ import { FormsModule} from '@angular/forms';
 import { ListaCadastroComponent } from './lista-cadastro/lista-cadastro.component';
 import { DetalhesCadastroComponent } from './detalhes-cadastro/detalhes-cadastro.component';
 import { AtualizarComponent } from './atualizar/atualizar.component';
-import { LogarComponent } from './logar/logar.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 
@@ -19,8 +18,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CadastroComponent,
     ListaCadastroComponent,
     DetalhesCadastroComponent,
-    AtualizarComponent,
-    LogarComponent
+    AtualizarComponent
   ],
   imports: [
     BrowserModule,
