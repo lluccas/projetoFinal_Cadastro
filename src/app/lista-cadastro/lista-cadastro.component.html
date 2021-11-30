@@ -44,7 +44,7 @@
            </tr>
        </thead>
        <tbody>
-           <tr *ngFor = "let aluno of alunos">
+           <tr *ngFor = "let aluno of alunos | paginate:{ itemsPerPage: 5, currentPage:pagina, totalItems:total}">
                <td> {{ aluno.nome }} </td>
                <!--<td> {{ aluno.idade }} </td>
                <td> {{ aluno.sexo }} </td>
@@ -58,7 +58,7 @@
            </tr>
            
        </tbody>
-      <!--<pagination-controls (pageChange)="pagina = $event" class="pag"></pagination-controls> | paginate:{ itemsPerPage: 5, currentPage:pagina, totalItems:total}-->
+      <pagination-controls (pageChange)="pagina = $event" class="pag"></pagination-controls> 
    </table>
    
    </div>

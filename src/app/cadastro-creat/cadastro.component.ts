@@ -3,6 +3,8 @@ import { Aluno } from './../cadastro';
 import { Component, OnInit } from '@angular/core';
 import * as Aos from 'aos';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 
 @Component({
@@ -13,6 +15,7 @@ import { Router } from '@angular/router';
 export class CadastroComponent implements OnInit {
 
   aluno: Aluno = new Aluno();
+  
   constructor(private alunoService: AlunoService , private router: Router) { }
 
   ngOnInit(): void {
@@ -22,9 +25,14 @@ export class CadastroComponent implements OnInit {
   saveAluno(){
     this.alunoService.createCadastro(this.aluno).subscribe(data => {
       console.log(data)
-      alert("Cadastro feito")
+      alert("Cadastro realizado")
       this.voltarParaListar();
-    })
+    },
+    error => alert("CPF ja cadastrado ou formato de E-MAIL inválido, favor verificar!!")
+    )
+
+    
+  
     /*subscribe( data =>{
       console.log(data);
       alert("Cadastro realizado com sucesso!!!!");
@@ -41,5 +49,7 @@ export class CadastroComponent implements OnInit {
     console.log(this.aluno)
     this.saveCadastro();
   }*/
+
+ 
 
 }

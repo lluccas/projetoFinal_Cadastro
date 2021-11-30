@@ -13,7 +13,7 @@ export class ListaCadastroComponent implements OnInit {
 
     public nome!: string;
 
-    alunos?: Aluno[];
+    alunos!: Aluno[];
   constructor(private alunoService: AlunoService, private router: Router) { }
 
   total:any;
