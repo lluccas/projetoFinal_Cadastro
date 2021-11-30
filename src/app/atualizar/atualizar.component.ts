@@ -30,6 +30,8 @@ export class AtualizarComponent implements OnInit {
 
     this.alunoService.procurarAlunoById(this.id).subscribe(data => {
       this.aluno = data;
+      this.emailt = this.aluno.email;
+      this.cpft = this.aluno.cpf
     }, error => console.log(error));
 
   }
