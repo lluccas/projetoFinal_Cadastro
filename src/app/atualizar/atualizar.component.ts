@@ -14,6 +14,11 @@ export class AtualizarComponent implements OnInit {
 
   id!: number;
   aluno: Aluno = new Aluno();
+  emailt:any;
+  cpft:any;
+  re: any;
+  rcpf: any;
+  
   constructor(private alunoService: AlunoService,
     private route: ActivatedRoute,
     private router: Router) { }
@@ -29,11 +34,29 @@ export class AtualizarComponent implements OnInit {
 
   }
 
-  onSubmit  (){
-    this.alunoService.atualizarAluno(this.id, this.aluno).subscribe( data =>{
-      this.voltarParaListar();
+   Atualizar (){
+    this.re = /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2,3}/;
+    this.rcpf = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+    if (this.re.test(this.emailt)==false) {
+      console.log(this.emailt)
+      console.log(!this.re.test(this.emailt))
+        alert("Email invalido use o padrão email@exemplo.com");
     }
-    , error => alert("CPF ja cadastrado ou formato de E-MAIL inválido, favor verificar!!"))
+    else if(!this.rcpf.exec(this.cpft)){
+      alert("CPF inválido, use o padrão 000.000.000-00");
+    }
+    else{
+      this.aluno.email = this.emailt;
+      this.aluno.cpf = this.cpft
+      this.alunoService.atualizarAluno(this.id, this.aluno).subscribe(data => {
+        console.log(data)
+        alert("Atualização realizada")
+        this.voltarParaListar();
+      },
+      error => alert("CPF ja cadastrado, favor verificar!!")
+      )
+
+    }    
   }
 
   voltarParaListar(){
