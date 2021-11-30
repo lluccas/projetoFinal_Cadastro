@@ -33,7 +33,7 @@ export class AtualizarComponent implements OnInit {
     this.alunoService.atualizarAluno(this.id, this.aluno).subscribe( data =>{
       this.voltarParaListar();
     }
-    , error => console.log(error));
+    , error => alert("CPF ja cadastrado ou formato de E-MAIL inválido, favor verificar!!"))
   }
 
   voltarParaListar(){
