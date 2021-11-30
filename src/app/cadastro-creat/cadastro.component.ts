@@ -19,7 +19,9 @@ export class CadastroComponent implements OnInit {
   cpft:any;
   re: any;
   rcpf: any;
-  
+  rnome:any;
+  nomet:any;
+  sexot:any;
   constructor(private alunoService: AlunoService , private router: Router) { }
 
   ngOnInit(): void {
@@ -27,28 +29,38 @@ export class CadastroComponent implements OnInit {
   }
 
   saveAluno(){
-        this.re = /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2,3}/;
-        this.rcpf = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
-        if (this.re.test(this.emailt)==false) {
-          console.log(this.emailt)
-          console.log(!this.re.test(this.emailt))
-            alert("Email invalido use o padrão email@exemplo.com");
-        }
-        else if(!this.rcpf.exec(this.cpft)){
-          alert("CPF inválido, use o padrão 000.000.000-00");
-        }
-        else{
-          this.aluno.email = this.emailt;
-          this.aluno.cpf = this.cpft
-          this.alunoService.createCadastro(this.aluno).subscribe(data => {
-            console.log(data)
-            alert("Cadastro realizado")
-            this.voltarParaListar();
-          },
-          error => alert("CPF ja cadastrado, favor verificar!!")
-          )
+    this.re = /^[a-zA-Z0-9][a-zA-Z0-9\.-]+@([a-zA-Z0-9\.-]+\.)[a-zA-Z-0-9]{2,3}/;
+    this.rcpf = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+    this.rnome = /^[a-zA-Z]/;
+    if (this.re.test(this.emailt)==false) {
+      console.log(this.emailt)
+      console.log(!this.re.test(this.emailt))
+        alert("Email invalido use o padrão email@exemplo.com");
+    }
+    else if(!this.rcpf.exec(this.cpft)){
+      alert("CPF inválido, use o padrão 000.000.000-00");
+    }
+    else if(!this.rnome.exec(this.nomet)){
+      alert("Nome Invalido");
+    }
+    else if(!this.rnome.exec(this.sexot)){
+      alert("Sexo Invalido");
+    }
+    else{
+      this.aluno.email = this.emailt;
+      this.aluno.cpf = this.cpft;
+      this.aluno.nome = this.nomet;
+      this.aluno.sexo = this.sexot;
 
-        }    
+      this.alunoService.createCadastro(this.aluno).subscribe(data => {
+        console.log(data)
+        alert("Cadastro realizado")
+        this.voltarParaListar();
+      },
+      error => alert("CPF ja cadastrado, favor verificar!!")
+      )
+
+    }    
   }
 
   voltarParaListar(){
