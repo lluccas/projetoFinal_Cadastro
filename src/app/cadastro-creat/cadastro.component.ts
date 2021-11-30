@@ -15,6 +15,10 @@ import { invalid } from '@angular/compiler/src/render3/view/util';
 export class CadastroComponent implements OnInit {
 
   aluno: Aluno = new Aluno();
+  emailt:any;
+  cpft:any;
+  re: any;
+  rcpf: any;
   
   constructor(private alunoService: AlunoService , private router: Router) { }
 
@@ -23,26 +27,32 @@ export class CadastroComponent implements OnInit {
   }
 
   saveAluno(){
-    this.alunoService.createCadastro(this.aluno).subscribe(data => {
-      console.log(data)
-      alert("Cadastro realizado")
-      this.voltarParaListar();
-    },
-    error => alert("CPF ja cadastrado ou formato de E-MAIL inválido, favor verificar!!")
-    )
+        this.re = /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2,3}/;
+        this.rcpf = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+        if (this.re.test(this.emailt)==false) {
+          console.log(this.emailt)
+          console.log(!this.re.test(this.emailt))
+            alert("Email invalido use o padrão email@exemplo.com");
+        }
+        else if(!this.rcpf.exec(this.cpft)){
+          alert("CPF inválido, use o padrão 000.000.000-00");
+        }
+        else{
+          this.aluno.email = this.emailt;
+          this.aluno.cpf = this.cpft
+          this.alunoService.createCadastro(this.aluno).subscribe(data => {
+            console.log(data)
+            alert("Cadastro realizado")
+            this.voltarParaListar();
+          },
+          error => alert("CPF ja cadastrado, favor verificar!!")
+          )
 
-    
-  
-    /*subscribe( data =>{
-      console.log(data);
-      alert("Cadastro realizado com sucesso!!!!");
-    },
-    error => console.log(error));*/
+        }    
   }
 
   voltarParaListar(){
     this.router.navigate(['lista']);
-
   }
 
  /* onSubmit(){
@@ -53,3 +63,7 @@ export class CadastroComponent implements OnInit {
  
 
 }
+function jQuery(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
